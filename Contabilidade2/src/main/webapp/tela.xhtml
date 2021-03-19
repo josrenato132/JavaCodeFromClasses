@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+	<title>Registro</title>
+</h:head>
+<h:body>
+	<h:form>
+	<p:panel header="Registro de empresas">
+
+		<h:panelGrid id="painelDados" columns="2">
+			<h:outputLabel value="CNPJ" />
+			<p:inputText id="Cod" maxlength="14" size="15" value="#{telaBean.empresa.codigo}" required="true" requiredMessage="O campo CNPJ é obrigatório."/>
+
+			<h:outputLabel value="Nome" />
+			<p:inputText id="Nom" maxlength="25" size="15" value="#{telaBean.empresa.nome}" required="true" requiredMessage="O campo Nome é obrigatório."/>
+
+			<h:outputLabel value="Endereço" />
+			<p:inputText id="End" maxlength="40" size="15" value="#{telaBean.empresa.endereco}" required="true" requiredMessage="O campo Endereço é obrigatório."/>
+
+			<p:commandButton value="Salvar" actionListener="#{telaBean.salvar}" update="painelDados tabela"/>
+			<p:messages closable="true">
+				<p:autoUpdate/>
+			</p:messages>
+		</h:panelGrid>
+
+		<p:separator />
+
+		<p:dataTable id="tabela" emptyMessage="Não há registros" paginator="true" value="#{telaBean.empresas}" var="cursor">
+			<p:column headerText="Código"> #{cursor.codigo}</p:column>
+			<p:column headerText="Nome"> #{cursor.nome} </p:column>
+			<p:column headerText="Endereço"> #{cursor.endereco}</p:column>
+			<p:column headerText="Opções"></p:column>
+		</p:dataTable>
+	</p:panel>
+	</h:form>
+</h:body>
+</html>
